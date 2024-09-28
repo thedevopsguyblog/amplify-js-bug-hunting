@@ -27,30 +27,6 @@ export class AuthStack extends cdk.Stack {
       }
     })
 
-    const postAuthLambda = new cdk.aws_lambda.Function(this, `${PREFIX}${AC}postConfPopulateAttributes`, {
-      runtime: cdk.aws_lambda.Runtime.NODEJS_20_X,
-      functionName: `${PREFIX}${AC}postConfPopulateAttributes`,
-      description: `${PREFIX}${AC}Post Auth, populate their custom attributes, and add them to the "user" group`,
-      handler: 'authPostConfirmation.handler',
-      code: cdk.aws_lambda.Code.fromAsset(`${process.cwd()}/api/build/lambdas/authPostConfirmation`),
-      environment: {
-        ATTR_ORGNAME: 'custom:orgName',
-        DEFAULT_GRP: `${PREFIX}${AC}user`,
-      },
-      logRetention: cdk.aws_logs.RetentionDays.THREE_DAYS,
-    })
-
-    const lambdaPolicy = new cdk.aws_iam.PolicyStatement({
-      effect: cdk.aws_iam.Effect.ALLOW,
-      actions: ['cognito-idp:AdminUpdateUserAttributes', 'cognito-idp:AdminAddUserToGroup'],
-      resources: ['*'],
-      // principals: [new cdk.aws_iam.ServicePrincipal('lambda.amazonaws.com')],
-    })
-
-    postAuthLambda.addToRolePolicy(lambdaPolicy)
-
-    userPool.addTrigger(cdk.aws_cognito.UserPoolOperation.POST_CONFIRMATION, postAuthLambda)
-
     const userPoolDomainName = userPool.addDomain(`${PREFIX}DomainName`, {
       cognitoDomain:{
         domainPrefix: `${PREFIX}`.toLocaleLowerCase()
@@ -125,20 +101,6 @@ export class AuthStack extends cdk.Stack {
       },
     },
     );
-
-
-    /* Cognito Groups  */
-    const adminGroup = new cdk.aws_cognito.CfnUserPoolGroup(this, 'adminGroup', {
-      groupName: `${PREFIX}${AC}admin`,
-      userPoolId: userPool.userPoolId,
-      description: 'MySub Admin Group',
-    })
-
-    const userGroup = new cdk.aws_cognito.CfnUserPoolGroup(this, 'userGroup', {
-      groupName: `${PREFIX}${AC}user`,
-      userPoolId: userPool.userPoolId,
-      description: 'MySub User Group - all users are added to this group by default',
-    })
 
     /* SSM Outputs */
     new cdk.aws_ssm.StringParameter(this, `${PREFIX}${AC}AuthUserPoolId`, {

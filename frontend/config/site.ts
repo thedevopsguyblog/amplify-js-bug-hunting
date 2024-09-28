@@ -1,24 +1,45 @@
 export type SiteConfig = typeof siteConfig;
 
+export type NavItem = {
+	label: string;
+	href: string;
+	auth: boolean;
+	admin: boolean;
+};
+
 export const siteConfig = {
-  name: "SaaS Bug Hunting",
-  navItems: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Demo",
-      href: "/demo",
-    },
-  ],
-  navMenuItems: [
-    {
-      label: "Profile",
-      href: "/profile",
-    },
-  ],
-  links: {
+	name: "Amplify JS Starter",
+	title: "A project to get you started with Amplify Gen 1 + CDK and Next JS",
+	description: "A project to get you started with Amplify Gen 1 + CDK and Next JS",
+	url: "https://mysub-saas.com",
+	navItems: [
+		{
+			label: "Home",
+			href: "/",
+			auth:false,
+			admin: false
+		},
+		{
+			label: "Profile",
+			href: "/profile",
+			auth:true,
+			admin: false
+		},
+		{
+			label: "Create Todo",
+			href: "/create",
+			auth:false,
+			admin: false
+		},
+		{
+			label: "List Todos",
+			href: "/list",
+			auth:true,
+			admin: true
+		}
+	],
+	links: {
+		email: "support@domain.com",
     github: "https://github.com/thedevopsguyblog/amplify-js-bug-hunting.git",
-  },
+	},
 };

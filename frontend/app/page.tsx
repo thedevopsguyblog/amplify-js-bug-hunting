@@ -8,16 +8,18 @@ import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
 
 export default function Home() {
+
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="inline-block max-w-xl text-center justify-center">
+        <span className={title()}>The&nbsp;</span><br/>
+        <span className={title({ color: "violet" })}>Fullstack Serverless Starter Project</span><br/><br/>
         <span className={title()}>AWS CDK + &nbsp;</span><br/>
-        <span className={title()}>Next + &nbsp;</span><br/>
-        <span className={title()}>Amplify Gen1&nbsp;</span><br/>
-        <span className={title({ color: "violet" })}>Fullstack Serverless Starter Project</span>
+        <span className={title()}>Next JS + &nbsp;</span><br/>
+        <span className={title()}>Amplify Gen 1&nbsp;</span><br/>
         <br />
         <div className={subtitle({ class: "mt-4" })}>
-          This template consumes infra provisioned my the CDK, and dynamically generates amplify configuration files. Then the app is able to make client side and server side calls to serverices like S3 and AppSync.
+          This template provisions IAC via the CDK, then dynamically generates Amplify configuration files. 
           <br/><br/>To get started, clone the repo and follow the instructions below.
         </div>
       </div>
@@ -34,13 +36,6 @@ export default function Home() {
         </Link>
       </div>
 
-      <div className="mt-8">
-        <Textarea variant="bordered" inputMode='text'>
-          <p>
-            XXX
-          </p>
-        </Textarea>
-      </div>
     </section>
   );
 }

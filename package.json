@@ -5,6 +5,7 @@
     "amplify-js-bug-hunting": "bin/amplify-js-bug-hunting.js"
   },
   "scripts": {
+    "dev:api": "node api/build.mjs && npx aws-cdk deploy \"DFSSK-API\" -e true --hotswap true --require-approval never",
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
@@ -13,15 +14,17 @@
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "@types/node": "22.5.4",
+    "aws-cdk": "2.160.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.2.5",
-    "aws-cdk": "2.160.0",
     "ts-node": "^10.9.2",
     "typescript": "~5.6.2"
   },
   "dependencies": {
+    "aws-amplify": "^6.6.2",
     "aws-cdk-lib": "2.160.0",
     "constructs": "^10.0.0",
-    "source-map-support": "^0.5.21"
+    "source-map-support": "^0.5.21",
+    "yaml": "^2.5.1"
   }
 }
