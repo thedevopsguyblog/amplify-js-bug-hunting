@@ -1,0 +1,27 @@
+version: 1
+applications:
+- appRoot: frontend
+  frontend:
+    buildPath: /frontend
+    phases:
+      preBuild:
+        commands:
+          - cd ../
+          - npm ci
+          - npm i aws-amplify
+          - node api/build.mjs
+          - npx aws-cdk deploy "${RESOURCE_PREFIX}*" --require-approval never --outputs-file ./frontend/amplifyconfiguration.json
+          - cat ./frontend/amplifyconfiguration.json
+          - npx ts-node --prefer-ts-exts bin/frontend.ts
+          - cd frontend
+          - npm ci
+      build:
+        commands:
+          - npm run build
+    artifacts:
+      baseDirectory: .next
+      files:
+        - '**/*'
+    cache:
+      paths:
+        - node_modules/**/*
