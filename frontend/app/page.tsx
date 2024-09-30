@@ -14,7 +14,7 @@ export default function Home() {
       <div className="inline-block max-w-xl text-center justify-center">
         <span className={title()}>The&nbsp;</span><br/>
         <span className={title({ color: "violet" })}>Fullstack Serverless Starter Project</span><br/><br/>
-        <span className={title()}>AWS CDK + &nbsp;</span><br/>
+        <span className={title()}>CDK + &nbsp;</span><br/>
         <span className={title()}>Next JS + &nbsp;</span><br/>
         <span className={title()}>Amplify Gen 1&nbsp;</span><br/>
         <br />

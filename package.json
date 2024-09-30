@@ -5,7 +5,9 @@
     "amplify-js-bug-hunting": "bin/amplify-js-bug-hunting.js"
   },
   "scripts": {
-    "dev:api": "node api/build.mjs && npx aws-cdk deploy \"DFSSK-API\" -e true --hotswap true --require-approval never",
+    "dev:api": "node api/build.mjs && npx aws-cdk deploy \"D*\" -e true --hotswap true --require-approval never",
+    "dev:fullstack": "node api/build.mjs && npx aws-cdk deploy \"D*\" --require-approval never --outputs-file ./frontend/amplifyconfiguration.json",
+    "postdev:fullstack": "npx ts-node --prefer-ts-exts bin/fsk-fe.ts",
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
@@ -23,6 +25,7 @@
     "typescript": "~5.6.2"
   },
   "dependencies": {
+    "@aws-appsync/utils": "^1.9.0",
     "aws-amplify": "^6.6.2",
     "aws-cdk-lib": "2.160.0",
     "constructs": "^10.0.0",

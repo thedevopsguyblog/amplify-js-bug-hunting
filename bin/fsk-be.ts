@@ -46,3 +46,5 @@ const apistack = new API(app, `${RA}-API`, {
     repoName: envVars.REPO
   }
 })
+
+apistack.addDependency(authStack)

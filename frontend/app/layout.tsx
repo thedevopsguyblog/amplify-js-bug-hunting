@@ -8,6 +8,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import Navbar from "@/components/navbar";
+import ConfigureAmplifyClientSide from "@/components/ConfigureAmplifyClientSide"
 
 export const metadata: Metadata = {
   title: {
@@ -33,6 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+
     <html suppressHydrationWarning lang="en">
       <head />
       <body
@@ -41,6 +43,7 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
+        <ConfigureAmplifyClientSide/>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
             <Navbar />

@@ -6,3 +6,9 @@ node_modules
 # CDK asset staging directory
 .cdk.staging
 cdk.out
+
+# API 
+api/src/**/*.ts
+api/src/*.ts
+frontend/src/graphql/**/*.ts
+frontend/src/*.ts

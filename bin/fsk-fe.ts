@@ -83,15 +83,14 @@ async function writeExports(){
         throw new Error(errorMessage);
     }
 
-    const authConfig = parsedData[`${PREFIX}MS-Auth`]
-    const apiConfig = parsedData[`${PREFIX}MS-API`]
-    const bucketConfig = parsedData[`${PREFIX}MS-Bucket`]
+    const authConfig = parsedData[`${PREFIX}FSK-Auth`]
+    const apiConfig = parsedData[`${PREFIX}FSK-API`]
+    // const bucketConfig = parsedData[`${PREFIX}MS-Bucket`]
 
     // Check if the required data is present
-    if (!authConfig || !bucketConfig){
+    if (!authConfig){
         throw new Error('Required config is missing in ParsedData');
     }
-
 
     // https://docs.amplify.aws/gen1/javascript/tools/libraries/configure-categories/
     let awsexports: ResourcesConfig = {}
@@ -115,8 +114,8 @@ async function writeExports(){
                           'profile',
                           'openid',
                         ],
-                        redirectSignIn: PREFIX === 'P' ? [`https://www.mysub-saas.com/`] : [ 'http://localhost:3000/', `https://testing.mysub-saas.com/`, `https://dev.mysub-saas.com/`],
-                        redirectSignOut: PREFIX === 'P' ? [`https://www.mysub-saas.com/`] : [ 'http://localhost:3000/', `https://testing.mysub-saas.com/`, `https://dev.mysub-saas.com/`],
+                        redirectSignIn: PREFIX === 'P' ? [`https://www.prod.com/`] : [ 'http://localhost:3000/', `https://testing.com/`, `https://dev.com/`],
+                        redirectSignOut: PREFIX === 'P' ? [`https://www.prod.com/`] : [ 'http://localhost:3000/', `https://testing.com/`, `https://dev.com/`],
                         responseType: "code",
                     }
                 }
@@ -125,17 +124,16 @@ async function writeExports(){
         API: {
             GraphQL:{
                 endpoint: apiConfig.endpoint,
-                apiKey: apiConfig.apiKey,
                 region: apiConfig.region,
                 defaultAuthMode: 'userPool',
             }
         },
-        Storage: {
-            S3: {
-                bucket: bucketConfig.BucketName,
-                region: bucketConfig.BucketRegion,
-            }
-        }
+        // Storage: {
+        //     S3: {
+        //         bucket: bucketConfig.BucketName,
+        //         region: bucketConfig.BucketRegion,
+        //     }
+        // }
     }
 
     try {

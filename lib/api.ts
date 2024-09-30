@@ -43,15 +43,23 @@ export class API extends cdk.Stack {
       removalPolicy: props.envVars.REMOVALPOLICY as cdk.RemovalPolicy
     })
     
-    const requestsDS = api.addDynamoDbDataSource('RequestsTableSource', database)
+    const todoDS = api.addDynamoDbDataSource('RequestsTableSource', database)
 
-    // api.createResolver('QueryGetRequestsByUser', {
-    //   typeName: 'Query',
-    //   fieldName: 'getRequestsByUser',
-    //   dataSource: requestsDS,
-    //   code: cdk.aws_appsync.Code.fromAsset(join('api/build/resolvers/getRequestsByUser.js')),
-    //   runtime: cdk.aws_appsync.FunctionRuntime.JS_1_0_0,
-    // });
+    api.createResolver('createTodo', {
+      typeName: 'Mutation',
+      fieldName: 'createTodo',
+      dataSource: todoDS,
+      code: cdk.aws_appsync.Code.fromAsset(join('api/build/resolvers/createTodo.js')),
+      runtime: cdk.aws_appsync.FunctionRuntime.JS_1_0_0,
+    });
+
+    api.createResolver('listTodos', {
+      typeName: 'Query',
+      fieldName: 'listTodos',
+      dataSource: todoDS,
+      code: cdk.aws_appsync.Code.fromAsset(join('api/build/resolvers/listTodos.js')),
+      runtime: cdk.aws_appsync.FunctionRuntime.JS_1_0_0,
+    });
 
     //cfn Outputs
     new cdk.aws_ssm.StringParameter(this, `${props.envVars.RESOURCE_PREFIX}API_ID`, {

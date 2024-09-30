@@ -50,7 +50,7 @@ export class AuthStack extends cdk.Stack {
       },
       supportedIdentityProviders: [
         cdk.aws_cognito.UserPoolClientIdentityProvider.COGNITO,
-        cdk.aws_cognito.UserPoolClientIdentityProvider.GOOGLE,
+        // cdk.aws_cognito.UserPoolClientIdentityProvider.GOOGLE,
       ]
     })
 

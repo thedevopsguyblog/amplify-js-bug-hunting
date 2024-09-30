@@ -7,7 +7,6 @@ import { FetchUserAttributesOutput } from 'aws-amplify/auth'
 import { now, getLocalTimeZone, today, parseAbsoluteToLocal } from "@internationalized/date"
 import { useFormState, useFormStatus } from 'react-dom'
 import { uploadData } from 'aws-amplify/storage'
-import { UploadIcon, XIcon } from 'lucide-react'
 import { logger } from '@/lib/utils'
 
 const initialState = {
