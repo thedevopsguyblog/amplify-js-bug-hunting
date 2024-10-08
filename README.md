@@ -1,14 +1,11 @@
-# Welcome to your CDK TypeScript project
+# Appsync(CDK) + NextJS + Amplify - StarterKit
 
-This is a blank project for CDK development with TypeScript.
+This project is a full-stack starter kit that integrates AWS AppSync (using CDK), Next.js, and AWS Amplify.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Getting Started
 
-## Useful commands
-
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+1. Clone this repo
+2. `asp *your aws profile*`
+3. `npm i`
+4. `npm run dev:fullstack` <!-- It should deploy all the resources to your AWS account. And generate all the frontend config files -->
+5. cd into the frontend `npm run dev` <!-- This should startup Nextjs and connect it to your CDK backend infra. -->
