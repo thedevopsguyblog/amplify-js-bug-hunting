@@ -85,7 +85,7 @@ async function writeExports(){
 
     const authConfig = parsedData[`${PREFIX}FSK-Auth`]
     const apiConfig = parsedData[`${PREFIX}FSK-API`]
-    // const bucketConfig = parsedData[`${PREFIX}MS-Bucket`]
+    const bucketConfig = parsedData[`${PREFIX}FSK-Bucket`]
 
     // Check if the required data is present
     if (!authConfig){
@@ -128,12 +128,12 @@ async function writeExports(){
                 defaultAuthMode: 'userPool',
             }
         },
-        // Storage: {
-        //     S3: {
-        //         bucket: bucketConfig.BucketName,
-        //         region: bucketConfig.BucketRegion,
-        //     }
-        // }
+        Storage: {
+            S3: {
+                bucket: bucketConfig.BucketName,
+                region: bucketConfig.BucketRegion,
+            }
+        }
     }
 
     try {

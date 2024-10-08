@@ -1,13 +1,13 @@
 'use client'
 
 import React from 'react'
-import { Button, Input, DatePicker, Card, CardBody, CardHeader, Divider } from '@nextui-org/react'
+import { Button, Input, Card, CardBody, CardHeader, Divider } from '@nextui-org/react'
 import { submitCreateRequest } from '@/_actions/serverUtils'
 import { FetchUserAttributesOutput } from 'aws-amplify/auth'
-import { now, getLocalTimeZone, today, parseAbsoluteToLocal } from "@internationalized/date"
 import { useFormState, useFormStatus } from 'react-dom'
 import { uploadData } from 'aws-amplify/storage'
 import { logger } from '@/lib/utils'
+import {MdOutlineDeleteOutline} from "react-icons/md"
 
 const initialState = {
   message: "",
@@ -101,8 +101,8 @@ export default function MyForm({ userAttributes }: { userAttributes: FetchUserAt
     <Card className="max-w-2xl mx-auto">
       <CardHeader className="flex gap-3">
         <div className="flex flex-col">
-          <p className="text-md">Request A Substitute</p>
-          <p className="text-small text-default-500">Fill out the form below to submit your request</p>
+          <p className="text-md">Create a Todo Item</p>
+          <p className="text-small text-default-500">Fill out the form below to create a Todo Item</p>
         </div>
       </CardHeader>
       <Divider />
@@ -111,7 +111,6 @@ export default function MyForm({ userAttributes }: { userAttributes: FetchUserAt
           <input name="orgid" type='hidden' value={userAttributes.email?.split('@')[1]} />
           <input name="status" type='hidden' value="open" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input
               label="Requestor"
               name="requestor"
@@ -119,41 +118,24 @@ export default function MyForm({ userAttributes }: { userAttributes: FetchUserAt
               readOnly
               value={userAttributes.email}
             />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input
-              label="Class Type"
+              label="Title"
               isRequired
-              name="class"
-              placeholder='e.g. Music, Science, Math'
+              name="title"
               type='text'
             />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input
-              label="Year group"
+              label="Description"
               isRequired
-              name="yeargroup"
-              min={0}
-              max={12}
-              placeholder='e.g. 10 or 6'
-              type='number'
-            />
-            <Input
-              label="Location"
-              isRequired
-              name="location"
-              placeholder='e.g. "Room 101" or "Lab 3"'
+              name="description"
               type='text'
             />
           </div>
 
-          <Input
-            label="Description"
-            isRequired
-            name="description"
-            placeholder='e.g Please complete lessons 1-5'
-            type='text'
-          />
 
           <div className="space-y-2">
             <label htmlFor="file-upload" className="block text-sm font-medium text-gray-700">
@@ -162,7 +144,7 @@ export default function MyForm({ userAttributes }: { userAttributes: FetchUserAt
             <div className="flex items-center space-x-2">
               <input
                 id="file-upload"
-                name="files"
+                name="file"
                 type="file"
                 multiple
                 onChange={handleFileChange}
@@ -172,7 +154,7 @@ export default function MyForm({ userAttributes }: { userAttributes: FetchUserAt
                 htmlFor="file-upload"
                 className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary cursor-pointer"
               >
-                <UploadIcon className="mr-2 h-5 w-5 text-gray-400" aria-hidden="true" />
+                {/* <UploadIcon className="mr-2 h-5 w-5 text-gray-400" aria-hidden="true" /> */}
                 <span>Choose files</span>
               </label>
               <span className="text-sm text-gray-500">{files.length} file(s) selected</span>
@@ -189,7 +171,7 @@ export default function MyForm({ userAttributes }: { userAttributes: FetchUserAt
                       onClick={() => removeFile(file)}
                       aria-label={`Remove ${file.name}`}
                     >
-                      <XIcon className="h-4 w-4" />
+                      <MdOutlineDeleteOutline className="h-4 w-4" />
                     </Button>
                   </li>
                 ))}
@@ -197,15 +179,6 @@ export default function MyForm({ userAttributes }: { userAttributes: FetchUserAt
             )}
           </div>
 
-          <DatePicker
-            label="Substitution Date"
-            name="subdate"
-            isRequired
-            granularity='minute'
-            minValue={today(getLocalTimeZone()).subtract({ weeks: 1 })}
-            maxValue={today(getLocalTimeZone()).add({ months: 1 })}
-            defaultValue={now(getLocalTimeZone())}
-          />
 
           <SubmitButton />
 

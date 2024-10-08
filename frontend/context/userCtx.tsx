@@ -3,9 +3,6 @@ import { fetchUserAttributes, FetchUserAttributesOutput, fetchAuthSession } from
 import { logger } from '@/lib/utils';
 import React from 'react';
 
-export const lsProfileProps = 'mysubUsrAttr';
-
-
 /** User Attributes Context
  * @description A context to store the user's attributes
 */
@@ -63,11 +60,13 @@ const GroupMembershipCtx = React.createContext<UserGroup>('anon');
 export function GroupContextProvider({ children }: { children: React.ReactNode }){
 
     //https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-the-id-token.html
-    const [group, setGroup] = React.useState<UserGroup >('anon');
+    const [group, setGroup] = React.useState<UserGroup>('anon');
     const [loading, setLoading] = React.useState<boolean>(true);
     const membership:string[] = []
 
     React.useEffect(() => {
+
+
         const getGroup = async () => {
             try {
                 let payload = await (await fetchAuthSession()).tokens?.idToken?.payload['cognito:groups'];
@@ -94,6 +93,7 @@ export function GroupContextProvider({ children }: { children: React.ReactNode }
                 }
             }
 
+            logger('CTX', 'GCP', `Membership: ${membership}`, 'debug');
             if (membership.some(member => new RegExp('.*admin').test(member))) {
                 setGroup('admin')
             } else if(membership.some(member => new RegExp('.*user').test(member))) {
@@ -101,10 +101,10 @@ export function GroupContextProvider({ children }: { children: React.ReactNode }
             } else {
                 setGroup('anon')
             }
+            setLoading(false);
         }
 
-        setLoading(false);
-        getGroup()
+        getGroup();
     }, [])
 
     if (loading) {

@@ -21,12 +21,12 @@ function RequestsForm() {
     return (
       <>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
-          <span><Spinner size='lg' label='Loading Request Form.'></Spinner></span>
+          <span><Spinner size='lg' label='Loading Create Form.'></Spinner></span>
         </div>
       </>
     )
   }
-// TODO: Add error handling
+
   if (error) {
     return (
       <>

@@ -157,7 +157,7 @@ export function SignUpModal() {
         } catch (error) {
           console.log('Error:',error);
         }
-        router.push('/dashboard')
+        router.push('/profile')
       }
       
     }
@@ -210,7 +210,7 @@ export function SignUpModal() {
               <ModalHeader className="flex flex-col gap-1">Sign Up</ModalHeader>
               <ModalBody>
                 <form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
-                  <div className='form-title'>Create a New MySub Account.</div>
+                  <div className='form-title'>Create an account to debug auth related issues.</div>
                   <Input
                     label="email"
                     isRequired

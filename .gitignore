@@ -12,3 +12,5 @@ api/src/**/*.ts
 api/src/*.ts
 frontend/src/graphql/**/*.ts
 frontend/src/*.ts
+frontend/amplifyconfiguration.json
+frontend/aws-exports.ts

@@ -2,18 +2,34 @@ type Todo {
   id: ID!
   title: String!
   description: String
-  completed: Boolean!
+  status: TodoStatus!
+  requestor:String!
+  file: [String]
+}
+
+enum TodoStatus {  
+	open
+  assigned
+  closed
+}
+
+input CreateTodoInput {
+  title: String!
+  description: String
+  status: TodoStatus!
+  requestor: String! 
+  file: [String]
 }
 
 type Query {
-  getTodoById(id: ID!): Todo
-  listTodos: [Todo]
+  getTodoById(id: ID!): Todo @aws_cognito_user_pools
+  listTodos: [Todo] @aws_cognito_user_pools
 }
 
 type Mutation {
-  createTodo(title: String!, description: String): Todo
-  updateTodo(id: ID!, title: String, description: String, completed: Boolean): Todo
-  deleteTodo(id: ID!): Todo
+  createTodo(input:CreateTodoInput!): Todo @aws_cognito_user_pools
+  updateTodo(id: ID!, title: String, description: String, completed: Boolean): Todo @aws_cognito_user_pools
+  deleteTodo(id: ID!): Todo @aws_cognito_user_pools
 }
 
 schema {

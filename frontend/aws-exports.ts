@@ -2,10 +2,10 @@ import { type ResourcesConfig }from "aws-amplify";
  export const awsExports: ResourcesConfig = {
   "Auth": {
     "Cognito": {
-      "userPoolClientId": "2f33j2gb31numfdk0sq9f5e5a5",
-      "userPoolId": "ap-southeast-2_OdijNgMUU",
+      "userPoolClientId": "6aqqd584d1r5ubdtvvcmpm7arl",
+      "userPoolId": "ap-southeast-2_4BZ8gT9cB",
       "allowGuestAccess": true,
-      "identityPoolId": "ap-southeast-2:af1c2077-4caa-43c8-9ea7-838545ba5737",
+      "identityPoolId": "ap-southeast-2:a0216a40-8298-482e-a33b-46f35784f32f",
       "signUpVerificationMethod": "code",
       "loginWith": {
         "email": true,
@@ -37,9 +37,15 @@ import { type ResourcesConfig }from "aws-amplify";
   },
   "API": {
     "GraphQL": {
-      "endpoint": "https://tdvylhhiwrdnvhffchz2pi6ixu.appsync-api.ap-southeast-2.amazonaws.com/graphql",
+      "endpoint": "https://hh6ouk27ajbh7kemo4f7jzfk2m.appsync-api.ap-southeast-2.amazonaws.com/graphql",
       "region": "ap-southeast-2",
       "defaultAuthMode": "userPool"
+    }
+  },
+  "Storage": {
+    "S3": {
+      "bucket": "dfsk-objectstore",
+      "region": "ap-southeast-2"
     }
   }
 }

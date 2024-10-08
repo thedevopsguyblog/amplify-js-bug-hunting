@@ -33,7 +33,7 @@ export function SignInModal() {
       let formData = Object.fromEntries(new FormData(e.target as HTMLFormElement))
       const { isSignedIn, nextStep } = await signIn({ username: formData.username as string, password: formData.password as string })
       if (isSignedIn) {
-        window.location.href = '/dashboard'
+        window.location.href = '/profile'
         // router.push('/playground') // BUG: When I use .push() the state of the auth button doesnt change - a full page reload is neccessary to trigger an update in the auth context 
         onClose();
       } else {

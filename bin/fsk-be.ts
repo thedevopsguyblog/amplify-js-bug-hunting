@@ -3,6 +3,7 @@ import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import {API } from '../lib/api';
 import { AuthStack } from '../lib/auth-stack';
+import { Bucket } from '../lib/bucket';
 import { execSync } from 'node:child_process';
 import { getEnvContext } from '../config';
 
@@ -47,4 +48,19 @@ const apistack = new API(app, `${RA}-API`, {
   }
 })
 
+const bucketStack = new Bucket(app, `${RA}-Bucket`, {
+  stackName: `${RA}-Bucket`,
+  description: `S3 bucket for ${RA}`,
+  env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: process.env.CDK_DEFAULT_REGION
+  },
+  enVars: envVars,
+  tags: {
+    app: `${RA}-Bucket`,
+    repoName: envVars.REPO
+  }
+})
+
 apistack.addDependency(authStack)
+bucketStack.addDependency(authStack)

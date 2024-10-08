@@ -30,7 +30,7 @@ export default function Navbar() {
 	React.useEffect(() => {
 		function createNavLinks(navbaritems:Array<NavItem>) {
 		let navBarItems:Array<NavItem> = [];
-		logger('NAVBAR', 'GRP', `User Group: ${grp}`, 'debug')
+		logger('Nav', 'GRP', `User Group: ${grp}`, 'debug')
 		  switch (grp) {
 			case 'admin':
 			  navBarItems = navbaritems.filter((route:NavItem) => route.auth == true || route.admin == true);

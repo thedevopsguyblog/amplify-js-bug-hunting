@@ -1,15 +1,19 @@
 {
   "DFSK-Auth": {
     "userPoolDomainNameRedirect": "https://d.auth.ap-southeast-2.amazoncognito.com/oauth2/idpresponse",
-    "userPoolClientId": "2f33j2gb31numfdk0sq9f5e5a5",
-    "userPoolId": "ap-southeast-2_OdijNgMUU",
-    "identityPoolId": "ap-southeast-2:af1c2077-4caa-43c8-9ea7-838545ba5737",
+    "userPoolClientId": "6aqqd584d1r5ubdtvvcmpm7arl",
+    "userPoolId": "ap-southeast-2_4BZ8gT9cB",
+    "identityPoolId": "ap-southeast-2:a0216a40-8298-482e-a33b-46f35784f32f",
     "userPoolDomainName": "d.auth.ap-southeast-2.amazoncognito.com"
   },
+  "DFSK-Bucket": {
+    "BucketName": "dfsk-objectstore",
+    "BucketRegion": "ap-southeast-2"
+  },
   "DFSK-API": {
-    "endpoint": "https://tdvylhhiwrdnvhffchz2pi6ixu.appsync-api.ap-southeast-2.amazonaws.com/graphql",
+    "endpoint": "https://hh6ouk27ajbh7kemo4f7jzfk2m.appsync-api.ap-southeast-2.amazonaws.com/graphql",
     "region": "ap-southeast-2",
-    "apiID": "eyyqibu7rzcuphdnburyzpbhzi",
+    "apiID": "e4a64a7dbrbmvkihljecx3sr54",
     "defaultAuthMode": "AMAZON_COGNITO_USER_POOLS"
   }
 }
